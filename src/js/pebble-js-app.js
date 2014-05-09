@@ -28,11 +28,13 @@ function fetch_random_word() {
 
             var response = JSON.parse(req.responseText);
 
-            var shippingDate = response.word;
-            console.log(shippingDate);
+            var theWord = response.word;
+            console.log(theWord);
+            Pebble.sendAppMessage({"word": theWord});
 
         } else {
             console.log("Error");
+            Pebble.sendAppMessage({"word": "Not Found"});
         }
     };
 

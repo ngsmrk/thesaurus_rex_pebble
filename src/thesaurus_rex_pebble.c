@@ -2,6 +2,11 @@
 
 static Window *window;
 static TextLayer *text_layer;
+static char word[10];
+
+enum {
+  QUOTE_KEY_INIT = 0x0,
+};
 
 static void window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
@@ -35,6 +40,10 @@ static void send_to_phone() {
 
 static void in_received_handler(DictionaryIterator *iter, void *context) {
     APP_LOG(APP_LOG_LEVEL_DEBUG, "App Message Received");
+    Tuple *word_tuple = dict_find(iter, QUOTE_KEY_INIT);
+
+    strncpy(word, word_tuple->value->cstring, 10);
+    text_layer_set_text(text_layer, word);
 }
 
 static void in_dropped_handler(AppMessageResult reason, void *context) {
