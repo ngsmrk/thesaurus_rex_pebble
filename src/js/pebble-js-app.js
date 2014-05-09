@@ -1,7 +1,14 @@
+// Set callback for init event
 Pebble.addEventListener("ready",
     function (e) {
         console.log("Thesaurus Rex is ready!!!");
-        fetch_random_word();
+    }
+);
+
+// Set callback for appmessage events
+Pebble.addEventListener("appmessage",
+    function (e) {
+        console.log("message");
     }
 );
 
