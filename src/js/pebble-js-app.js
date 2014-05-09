@@ -9,6 +9,7 @@ Pebble.addEventListener("ready",
 Pebble.addEventListener("appmessage",
     function (e) {
         console.log("message");
+        fetch_random_word();
     }
 );
 

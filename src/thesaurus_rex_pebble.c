@@ -19,6 +19,18 @@ static void window_unload(Window *window) {
 
 static void send_to_phone() {
     APP_LOG(APP_LOG_LEVEL_DEBUG, "Sending to Phone");
+
+  DictionaryIterator *iter;
+  app_message_outbox_begin(&iter);
+  if (iter == NULL) {
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "null iter");
+  }
+
+  Tuplet tuple = TupletCString(1, "hello hello");
+  dict_write_tuplet(iter, &tuple);
+  dict_write_end(iter);
+
+  app_message_outbox_send();
 }
 
 static void in_received_handler(DictionaryIterator *iter, void *context) {
