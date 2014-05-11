@@ -1,17 +1,20 @@
 {
-  "uuid": "1156b4af-b3c5-4412-a242-925bf861a082",
-  "shortName": "T. Rex",
-  "longName": "Thesaurus Rex",
-  "companyName": "Angus Mark",
-  "versionCode": 1,
-  "versionLabel": "1.0.0",
-  "watchapp": {
-    "watchface": false
-  },
-  "appKeys": {
-    "word": 0
-  },
-  "resources": {
-    "media": []
-  }
+    "versionCode": 1,
+    "shortName": "T. Rex",
+    "capabilities": [
+        ""
+    ],
+    "resources": {
+        "media": []
+    },
+    "versionLabel": "1.0.0",
+    "companyName": "Angus Mark",
+    "watchapp": {
+        "watchface": false
+    },
+    "uuid": "1156b4af-b3c5-4412-a242-925bf861a082",
+    "appKeys": {
+        "word": 0
+    },
+    "longName": "Thesaurus Rex"
 }

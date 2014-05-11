@@ -2,7 +2,7 @@
 
 static Window *window;
 static TextLayer *text_layer;
-static char word[10];
+static char word[100];
 
 enum {
   QUOTE_KEY_INIT = 0x0,
@@ -13,7 +13,7 @@ static void window_load(Window *window) {
   GRect bounds = layer_get_bounds(window_layer);
 
   text_layer = text_layer_create((GRect) { .origin = { 0, 72 }, .size = { bounds.size.w, 20 } });
-  text_layer_set_text(text_layer, "Press a button");
+  text_layer_set_text(text_layer, "Click for a word");
   text_layer_set_text_alignment(text_layer, GTextAlignmentCenter);
   layer_add_child(window_layer, text_layer_get_layer(text_layer));
 }
@@ -31,7 +31,7 @@ static void send_to_phone() {
     APP_LOG(APP_LOG_LEVEL_DEBUG, "null iter");
   }
 
-  Tuplet tuple = TupletCString(1, "hello hello");
+  Tuplet tuple = TupletCString(1, "");
   dict_write_tuplet(iter, &tuple);
   dict_write_end(iter);
 
@@ -42,7 +42,7 @@ static void in_received_handler(DictionaryIterator *iter, void *context) {
     APP_LOG(APP_LOG_LEVEL_DEBUG, "App Message Received");
     Tuple *word_tuple = dict_find(iter, QUOTE_KEY_INIT);
 
-    strncpy(word, word_tuple->value->cstring, 10);
+    strncpy(word, word_tuple->value->cstring, 100);
     text_layer_set_text(text_layer, word);
 }
 
@@ -55,7 +55,7 @@ static void out_failed_handler(DictionaryIterator *failed, AppMessageResult reas
 }
 
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
-  text_layer_set_text(text_layer, "Click for a word");
+  text_layer_set_text(text_layer, "Loading...");
   send_to_phone();
 }
 
